@@ -44,7 +44,9 @@ def main():
                        "sprites/explosion5.png",
                        "sprites/explosion6.png",
                        "sprites/explosion7.png"]
-                       
+
+
+    #asteroid = games.load_image("sprites/asteroid1.png", transparent = False)                   
     
 
 
@@ -61,7 +63,7 @@ def main():
     games.screen.background = bg_img
     games.screen.add(player)
     games.screen.add(explosion)
-
+    #games.screen.add(asteroid)
 
 
     #game setup

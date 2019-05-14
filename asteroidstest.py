@@ -2,7 +2,7 @@
 # Add Game object for complete program
 
 import math, random
-from livewires import games, color
+from superwires import games, color
 
 games.init(screen_width = 640, screen_height = 480, fps = 50)
 
@@ -51,9 +51,9 @@ class Asteroid(Wrapper):
     SMALL = 1
     MEDIUM = 2
     LARGE = 3
-    images = {SMALL  : games.load_image("asteroid_small.bmp"),
-              MEDIUM : games.load_image("asteroid_med.bmp"),
-              LARGE  : games.load_image("asteroid_big.bmp") }
+    images = {SMALL  : games.load_image("sprites/asteroid3.png"),
+              MEDIUM : games.load_image("sprites/asteroid2.png"),
+              LARGE  : games.load_image("sprites/asteroid1.png") }
 
     SPEED = 2
     SPAWN = 2
@@ -99,8 +99,8 @@ class Asteroid(Wrapper):
 
 class Ship(Collider):
     """ The player's ship. """
-    image = games.load_image("ship.bmp")
-    sound = games.load_sound("thrust.wav")
+    image = games.load_image("sprites/spaceship3.png")
+    sound = games.load_sound("sounds/soundfx/thrust.wav")
     ROTATION_STEP = 3
     VELOCITY_STEP = .03
     VELOCITY_MAX = 3
@@ -153,8 +153,8 @@ class Ship(Collider):
 
 class Missile(Collider):
     """ A missile launched by the player's ship. """
-    image = games.load_image("missile.bmp")
-    sound = games.load_sound("missile.wav")
+    image = games.load_image("sprites/projectile.png")
+    sound = games.load_sound("sounds/soundfx/explosion.wav")
     BUFFER = 40
     VELOCITY_FACTOR = 7
     LIFETIME = 40
@@ -195,16 +195,15 @@ class Missile(Collider):
 class Explosion(games.Animation):
     """ Explosion animation. """
     sound = games.load_sound("sounds/soundfx/explosion.wav")
-    images = ["explosion1.png",
-              "explosion2.png",
-              "explosion3.png",
-              "explosion4.png",
-              "explosion5.png",
-              "explosion6.png",
-              "explosion7.png",
-              "explosion8.png",
-              "explosion9.png"]
-
+    images = ["sprites/explosion1.png",
+              "sprites/explosion2.png",
+              "sprites/explosion3.png",
+              "sprites/explosion4.png",
+              "sprites/explosion5.png",
+              "sprites/explosion6.png",
+              "sprites/explosion7.png",
+              "sprites/explosion8.png",
+              "sprites/explosion9.png"]
     def __init__(self, x, y):
         super(Explosion, self).__init__(images = Explosion.images,
                                         x = x, y = y,
@@ -221,7 +220,7 @@ class Game(object):
         self.level = 0
 
         # load sound for level advance
-        self.sound = games.load_sound("level.wav")
+        self.sound = games.load_sound("sounds/soundfx/levelup1.wav")
 
         # create score
         self.score = games.Text(value = 0,
@@ -241,11 +240,11 @@ class Game(object):
     def play(self):
         """ Play the game. """
         # begin theme music
-        games.music.load("theme.mid")
+        games.music.load("sounds/theams/Orbit Beat 130.wav")
         games.music.play(-1)
 
         # load and set background
-        nebula_image = games.load_image("nebula.jpg")
+        nebula_image = games.load_image("sprites/background.png")
         games.screen.background = nebula_image
 
         # advance to level 1
